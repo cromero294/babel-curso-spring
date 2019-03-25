@@ -2,6 +2,8 @@ package entidades;
 
 // Las clases son moldes para crear objetos. Tienen atributos y métodos
 public class Persona {
+	private static int numeroPersonas;
+	
 	// Las referencias se inicializan a null y los primitivos a null por defecto
 	private String nombre;
 	private double altura;
@@ -10,13 +12,23 @@ public class Persona {
 	
 	public Persona() {
 		super();
+		Persona.numeroPersonas++;
 	}
 	
 	public Persona(String nombre, double altura, int edad) {
+		this();
 		// this se puede definir como una referencia al propio objeto
 		this.altura = altura;
 		this.nombre = nombre;
 		this.edad = edad;
+	}
+	
+	public static int getNumeroPersonas() {
+		return Persona.numeroPersonas;
+	}
+	
+	public static void setNumeroPersonas(int num) {
+		Persona.numeroPersonas = num;
 	}
 	
 	public String getNombre() {
