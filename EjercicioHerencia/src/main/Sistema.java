@@ -51,8 +51,8 @@ public class Sistema {
 				nomEmp = sc.nextLine();
 
 				empsDirectivo.add(this.empleados.get(nomEmp));
-				System.out.println("¿Quieres añadir más empleados? \n\t1. Sí.\n\t2. No.");
 				
+				System.out.println("¿Quieres añadir más empleados? \n\t1. Sí.\n\t2. No.");
 				siono = sc.nextInt();
 			}while(siono == 1);
 			
