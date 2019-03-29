@@ -1,6 +1,7 @@
 package persistencia;
 
 import java.util.List;
+import java.util.Map;
 
 import modelo.entidades.Videojuego;
 
@@ -11,7 +12,7 @@ public interface IDaoVideojuegos {
 	public Videojuego buscar(String nombre);
 	public Videojuego buscar(int id);
 	public boolean eliminar(int id);
-	public List<Videojuego> listar();
+	public Map<String, Integer> listar();
 	public double valoracionMedia();
 	public double precioMedia();
 }

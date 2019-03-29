@@ -1,11 +1,15 @@
 package modelo.negocio;
 
-import java.util.List;
+import java.io.BufferedReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.Map;
 
 import modelo.entidades.Videojuego;
 import persistencia.DaoVideojuego;
 
-public class GestorVideojuegos {
+public class GestorVideojuegos implements Runnable{
 	private static GestorVideojuegos instancia = null;
 	
 	private GestorVideojuegos() {
@@ -23,20 +27,16 @@ public class GestorVideojuegos {
 	public boolean crear(String nombre, String company, int valoracion, double precio) {
 		Videojuego videojuego = new Videojuego();
 		
-		if(nombre == "\n" || company == "\n" || nombre == "" || company == "") {
+		System.out.println(nombre);
+		
+		if(nombre.equals("\n") || company.equals("\n") || nombre.equals("") || company.equals("")) {
 			return false;
 		}
 		
 		videojuego.setNombre(nombre);
 		videojuego.setCompany(company);
-		
-		if(valoracion >= 0 && valoracion <= 10) {
-			videojuego.setValoracion(valoracion);			
-		}
-		
-		if(precio >= 0) {
-			videojuego.setPrecio(precio);			
-		}
+		videojuego.setValoracion(valoracion);
+		videojuego.setPrecio(precio);			
 		
 		return DaoVideojuego.getInstance().crear(videojuego);
 	}
@@ -48,20 +48,14 @@ public class GestorVideojuegos {
 	public boolean modificar(String nombre, String company, int valoracion, double precio, int id) {
 		Videojuego videojuego = new Videojuego();
 		
-		if(nombre == "\n" || company == "\n" || nombre == "" || company == "") {
+		if(nombre.equals("\n") || company.equals("\n") || nombre.equals("") || company.equals("")) {
 			return false;
 		}
 		
 		videojuego.setNombre(nombre);
 		videojuego.setCompany(company);
-		
-		if(valoracion >= 0 && valoracion <= 10) {
-			videojuego.setValoracion(valoracion);			
-		}
-		
-		if(precio >= 0) {
-			videojuego.setPrecio(precio);			
-		}
+		videojuego.setValoracion(valoracion);			
+		videojuego.setPrecio(precio);			
 		
 		return DaoVideojuego.getInstance().modificar(videojuego, id);
 	}
@@ -78,7 +72,7 @@ public class GestorVideojuegos {
 		return DaoVideojuego.getInstance().eliminar(id);
 	}
 	
-	public List<Videojuego> listar() {
+	public Map<String, Integer> listar() {
 		return DaoVideojuego.getInstance().listar();
 	}
 	
@@ -87,5 +81,17 @@ public class GestorVideojuegos {
 	}
 	public double precioMedia() {
 		return DaoVideojuego.getInstance().precioMedia();
+	}
+	
+	@Override
+	public void run() {
+		try (FileWriter fw = new FileWriter("ficheroBackup.txt");
+				PrintWriter pw = new PrintWriter(fw)) {
+			for(Videojuego v : DaoVideojuego.getInstance().listarBackup()) {
+				pw.println(v.toString());
+			}
+		}catch(IOException ioe) {
+			ioe.printStackTrace();
+		}	
 	}
 }

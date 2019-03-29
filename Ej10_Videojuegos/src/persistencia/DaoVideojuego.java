@@ -6,7 +6,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import modelo.entidades.Videojuego;
 
@@ -113,7 +115,7 @@ public class DaoVideojuego implements IDaoVideojuegos{
 			return false;
 		}
 		
-		String query = "update from videojuegos set NOMBRE=?,COMPANY=?,VALORACION=?,PRECIO=? where id=?";
+		String query = "update videojuegos set NOMBRE=?,COMPANY=?,VALORACION=?,PRECIO=? where id=?";
 		
 		try {
 			PreparedStatement ps = conexion.prepareStatement(query);
@@ -210,7 +212,32 @@ public class DaoVideojuego implements IDaoVideojuegos{
 	}
 
 	@Override
-	public List<Videojuego> listar() {
+	public Map<String, Integer> listar() {
+		if(!abrirConexion()) {
+			return null;
+		}
+		
+		Map<String, Integer> listaVideojuegos = new HashMap<String, Integer>();
+		Videojuego videojuego = null;
+		String query = "select * from videojuegos";
+		
+		try {
+			PreparedStatement ps = conexion.prepareStatement(query);
+			
+			ResultSet rs = ps.executeQuery();
+			while(rs.next()) {	
+				listaVideojuegos.put(rs.getString(2), rs.getInt(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			cerrarConexion();
+		}
+		
+		return listaVideojuegos;
+	}
+
+	public List<Videojuego> listarBackup() {
 		if(!abrirConexion()) {
 			return null;
 		}
@@ -223,8 +250,9 @@ public class DaoVideojuego implements IDaoVideojuegos{
 			PreparedStatement ps = conexion.prepareStatement(query);
 			
 			ResultSet rs = ps.executeQuery();
-			while(rs.next()) {
+			while(rs.next()) {	
 				videojuego = new Videojuego(rs.getString(2), rs.getString(3), rs.getInt(4), rs.getDouble(5));
+				
 				videojuego.setId(rs.getInt(1));
 				
 				listaVideojuegos.add(videojuego);

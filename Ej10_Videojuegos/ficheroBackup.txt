@@ -1,0 +1,5 @@
+(id=3, nombre=Jazz JackRabbit 2, compañía=Niidealaverdad, valoracion=10, precio=0.0)
+(id=4, nombre=Radumitur 3000, compañía=Radu Dumitru Company, valoracion=10, precio=12.67)
+(id=7, nombre=JuegoPrueba1, compañía=Companysssssss, valoracion=0, precio=0.0)
+(id=8, nombre=JuegoPrueba2, compañía=asdfkjsdfjkjkasf, valoracion=5, precio=0.0)
+(id=9, nombre=JuegoPrueba3, compañía=sfnkrrjijiwejiwer, valoracion=6, precio=PREPARANDO)

@@ -63,7 +63,19 @@ public class Videojuego {
 
 	@Override
 	public String toString() {
-		return "Videojuego [id=" + id + ", nombre=" + nombre + ", company=" + company + ", valoracion=" + valoracion
-				+ ", precio=" + precio + "]";
+		String precio = Double.toString(this.getPrecio());
+		String valoracion = Integer.toString(this.getValoracion());
+		
+		if(this.getPrecio() == -1) {
+			precio = "PREPARANDO";
+		}
+		
+		if(this.getValoracion() == -1) {
+			valoracion = "PREPARANDO";
+		}
+		
+		return "(id=" + id + ", nombre=" + nombre + ", compañía=" + company + ", valoracion=" + valoracion
+				+ ", precio=" + precio + ")";			
+
 	}
 }
