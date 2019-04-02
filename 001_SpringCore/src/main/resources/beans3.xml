@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Scopes o alcances. En spring tenemos cuatro tipos de alcance
+	Singleton - el objeto es unico para toda la aplicacion,
+	Prototype - el objeto es prototipado y clonado cada vez que se le requiera,
+	Los objetos prototipados no son gestionados directamente por spring. Es decir, su
+	ciclo de vida dependera de nosotros.
+	Request o Session -->
+	
+	<bean id="personaBean" class="spring3.Persona" scope="prototype"></bean>
+	
+	<!-- Si no ponemos scope, el alcance por defecto es singleton -->
+	<bean id="carlos" class="spring3.Persona" scope="singleton">
+		<property name="nombre" value="Carlos"></property>
+		<property name="edad" value="45"></property>
+		<property name="peso" value="75.5"></property>
+		<property name="direccion">
+			<!-- Inner bean -->
+			<bean class="spring3.Direccion">
+				<property name="nombreVia" value="Gran Via"></property>
+				<property name="tipoVia" value="calle"></property>
+				<property name="cp" value="28045"></property>
+			</bean>
+		</property>
+	</bean>
+	
+	<bean id="direccionLaura" class="spring3.Direccion">
+		<property name="nombreVia" value="Ensanche de Vallecas"></property>
+		<property name="tipoVia" value="avenida"></property>
+		<property name="cp" value="28051"></property>
+	</bean>
+	
+	<bean id="laura" class="spring3.Persona" scope="singleton">
+		<property name="nombre" value="Laura"></property>
+		<property name="edad" value="45"></property>
+		<property name="peso" value="75.5"></property>
+		<property name="direccion" ref="direccionLaura"></property>
+	</bean>
+	
+	<bean id="listaPersonas" class="java.util.ArrayList"></bean>
+</beans>

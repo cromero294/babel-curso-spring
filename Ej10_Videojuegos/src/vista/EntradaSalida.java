@@ -231,6 +231,13 @@ public class EntradaSalida {
 		System.out.println("Introduce el ID del videojuego que quieres eliminar: ");
 		int id = sc.nextInt();
 		
+		try {
+			String nombre = ge.buscar(id).getNombre();
+		}catch(NullPointerException e) {
+			System.out.println("No existe el videojuego especificado.");
+			return;
+		}
+		
 		System.out.println("¿Estás seguro de que quieres eliminar el juego " + ge.buscar(id).getNombre() + "? s/n");
 		String opcion = sc.next();
 		

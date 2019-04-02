@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Esto sigue las mismas reglas que con las propiedades -->
+	<bean id="coche" class="spring4.Coche" scope="singleton">
+		<constructor-arg index="0" value="Peugeot"></constructor-arg>
+		<constructor-arg index="1" value="308"></constructor-arg>
+		<constructor-arg index="2" value="1234-CWX"></constructor-arg>
+	</bean>
+</beans>

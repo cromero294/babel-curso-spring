@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Esto sigue las mismas reglas que con las propiedades -->
+	<bean id="listaStrings" class="java.util.ArrayList">
+		<constructor-arg>
+			<list value-type="java.lang.String">
+				<value>Harry Potter</value>
+				<value>Hermione</value>
+				<value>Gryffindor</value>
+			</list>
+		</constructor-arg>
+	</bean>
+	
+	<bean id="colecciones" class="spring5.Colecciones">
+		<property name="listaString">
+			<list value-type="java.lang.String">
+				<value>Harry Potter</value>
+				<value>Hermione</value>
+				<value>Gryffindor</value>
+			</list>
+		</property>
+		<property name="conjuntoString">
+			<set value-type="java.lang.String">
+				<value>Harry Potter</value>
+				<value>Harry Potter</value>
+				<value>Hermione</value>
+				<value>Gryffindor</value>
+			</set>
+		</property>
+		<property name="mapaString">
+			<map key-type="java.lang.Integer" value-type="java.lang.String">
+				<entry key="1" value="Harry Potter"></entry>
+				<entry key="2" value="Hermione"></entry>
+				<entry key="3" value="Gryffindor"></entry>
+			</map>
+		</property>
+		<property name="listaCoches">
+			<list value-type="spring5.Coche">
+				<bean class="spring5.Coche">
+					<property name="marca" value="Peugeot"></property>
+					<property name="modelo" value="309"></property>
+					<property name="matricula" value="1234-ABC"></property>
+				</bean>
+				<ref bean="renault"></ref>
+			</list>
+		</property>
+		<property name="mapaCoches">
+			<map key-type="java.lang.Integer" value-type="spring5.Coche">
+				<entry key="1">
+					<bean class="spring5.Coche">
+						<property name="marca" value="Ferrari"></property>
+						<property name="modelo" value="Testarosa"></property>
+						<property name="matricula" value="4231-TYQ"></property>
+					</bean>
+				</entry>
+				<entry key="2" value-ref="renault"></entry>
+			</map>
+		</property>
+	</bean>
+	
+	<bean id="renault" class="spring5.Coche">
+		<property name="marca" value="Renault"></property>
+		<property name="modelo" value="Megane"></property>
+		<property name="matricula" value="4576-CBA"></property>
+	</bean>
+</beans>
