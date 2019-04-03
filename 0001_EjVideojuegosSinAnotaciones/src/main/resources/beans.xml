@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<bean id="daoVideojuego" class="persistencia.DaoVideojuego"></bean>
+	
+	<bean id="ge" class="modelo.negocio.GestorVideojuegos" autowire="byName"></bean>
+	
+	<bean id="entradaSalida" class="vista.EntradaSalida" autowire="byName"></bean>
+<!-- 	<bean id="entradaSalida" class="vista.EntradaSalida">
+		<property name="ge">
+			<ref bean="ge"></ref>
+		</property>
+	</bean> -->
+	
+	<bean id="videojuego" class="modelo.entidades.Videojuego" scope="prototype"></bean>
+</beans>
