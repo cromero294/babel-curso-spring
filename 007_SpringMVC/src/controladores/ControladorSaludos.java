@@ -45,6 +45,7 @@ public class ControladorSaludos {
 		System.out.println(nombre);
 		System.out.println(nombreRequest);
 		session.setAttribute("atributoSession", "Valor 1");
+		System.out.println(session.getAttribute("atributoSession"));
 		//List<String> listaSaludos = ((Saludos)session.getAttribute("saludos")).getListaSaludos();
 		saludosSession.getListaSaludos().add(nombre);
 		System.out.println(saludosSession.getListaSaludos());

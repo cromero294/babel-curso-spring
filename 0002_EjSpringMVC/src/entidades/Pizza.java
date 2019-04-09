@@ -1,17 +1,19 @@
 package entidades;
 
-import java.util.List;
-
 public class Pizza {
-	private List<String> ingedientes;
+	private String[] ingredientes;
 	private String tam;
 
-	public List<String> getIngedientes() {
-		return ingedientes;
+	public String[] getIngredientes() {
+		return ingredientes;
+	}
+	
+	public String getIngredientesString() {
+		return ingredientes.toString();
 	}
 
-	public void setIngedientes(List<String> ingedientes) {
-		this.ingedientes = ingedientes;
+	public void setIngredientes(String[] ingredientes2) {
+		this.ingredientes = ingredientes2;
 	}
 
 	public String getTam() {
@@ -24,6 +26,6 @@ public class Pizza {
 
 	@Override
 	public String toString() {
-		return "Pizza [ingedientes=" + ingedientes + ", tam=" + tam + "]";
+		return "Pizza [ingredientes=" + ingredientes.toString() + ", tam=" + tam + "]";
 	}
 }
