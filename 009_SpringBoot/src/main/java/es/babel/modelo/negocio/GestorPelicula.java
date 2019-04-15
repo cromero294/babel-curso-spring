@@ -32,9 +32,6 @@ public class GestorPelicula {
 	}
 	
 	public Pelicula buscar(int id) {
-		// Optional es una caracteristica de java 1.8
-		// y se desarrollo para evitar en la medida de los posible
-		// los NullPointerException
 		Optional<Pelicula> optional = peliculaDao.findById(id);
 		
 		if(optional.isPresent()) {

@@ -48,7 +48,7 @@ public class ControladorPelicula {
 			return new ResponseEntity<Pelicula>(pelicula,
 					HttpStatus.BAD_REQUEST);
 		}
-	}	
+	}
 	
 	//http://localhost:8080/14_REST/mvc/peliculas
 	//http://localhost:8080/14_REST/mvc/peliculas?titulo=red&orden=genero
